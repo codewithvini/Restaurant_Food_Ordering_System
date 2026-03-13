@@ -8,6 +8,7 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for
 from database import Database
 from datetime import datetime
 import json
+import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'restaurant_secret_key_2026'
@@ -264,4 +265,6 @@ if __name__ == '__main__':
     print("\n🛑 Press CTRL+C to stop the server")
     print("="*60 + "\n")
 
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Get port from environment variable (for Render deployment) or use 5000 for local
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
