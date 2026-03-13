@@ -1,0 +1,369 @@
+╔════════════════════════════════════════════════════════════════╗
+║     RESTAURANT FOOD ORDERING SYSTEM - QUICK COMMANDS           ║
+║            MongoDB + Python Integration Project                 ║
+╚════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════
+📦 INSTALLATION COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+# Install all required packages
+pip install -r requirements.txt
+
+# Install individual packages
+pip install pymongo
+pip install dnspython
+pip install pillow
+
+# Verify installation
+pip list | grep pymongo
+pip list | grep dnspython
+
+# Check Python version
+python --version
+
+═══════════════════════════════════════════════════════════════════
+🚀 APPLICATION COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+# Run main application
+python restaurant_app.py
+
+# Run with Python 3 explicitly
+python3 restaurant_app.py
+
+# Load sample data into MongoDB
+python load_sample_data.py
+
+═══════════════════════════════════════════════════════════════════
+🧪 TESTING COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+# Quick connection test
+python -c "from database import Database; db = Database(); success, msg = db.connect(); print(msg)"
+
+# Test MongoDB connection with ping
+python -c "from pymongo import MongoClient; import config; client = MongoClient(config.MONGO_URI); client.admin.command('ping'); print('✅ Connected!')"
+
+# List all databases
+python -c "from pymongo import MongoClient; import config; client = MongoClient(config.MONGO_URI); print(client.list_database_names())"
+
+# Count documents in collections
+python -c "from database import Database; db = Database(); db.connect(); print('Menu:', db.menu_collection.count_documents({})); print('Orders:', db.orders_collection.count_documents({})); print('Feedback:', db.feedback_collection.count_documents({}))"
+
+═══════════════════════════════════════════════════════════════════
+📂 FILE MANAGEMENT COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+# List all files
+ls -lh
+
+# View file contents
+cat config.py
+cat requirements.txt
+
+# Edit configuration
+nano config.py
+vim config.py
+
+# Check file sizes
+du -sh *
+
+# Count lines of code
+wc -l *.py
+
+# Search for text in files
+grep -r "MONGO_URI" .
+
+═══════════════════════════════════════════════════════════════════
+🔍 DEBUGGING COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+# Run with verbose output
+python -v restaurant_app.py
+
+# Check for Python errors
+python -m py_compile restaurant_app.py
+python -m py_compile database.py
+
+# Test imports
+python -c "import tkinter; print('Tkinter OK')"
+python -c "import pymongo; print('pymongo OK')"
+
+# Print Python path
+python -c "import sys; print(sys.path)"
+
+═══════════════════════════════════════════════════════════════════
+📊 MONGODB QUERIES (Python One-Liners)
+═══════════════════════════════════════════════════════════════════
+
+# Add a menu item
+python -c "from database import Database; db = Database(); db.connect(); print(db.add_menu_item('Test Pizza', 'Main Course', 399, 'Test item', True))"
+
+# View all menu items
+python -c "from database import Database; db = Database(); db.connect(); items = db.get_all_menu_items()[1]; print(f'Total items: {len(items)}')"
+
+# Get average rating
+python -c "from database import Database; db = Database(); db.connect(); print(db.get_average_rating())"
+
+# Count orders by status
+python -c "from database import Database; db = Database(); db.connect(); orders = db.get_all_orders()[1]; statuses = {}; [statuses.update({o['status']: statuses.get(o['status'], 0) + 1}) for o in orders]; print(statuses)"
+
+═══════════════════════════════════════════════════════════════════
+🔐 CONFIGURATION COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+# Backup config file
+cp config.py config.py.backup
+
+# Restore config from backup
+cp config.py.backup config.py
+
+# Create config from template
+cat > config.py << 'EOF'
+MONGO_URI = "mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority"
+DATABASE_NAME = "restaurant_system"
+MENU_COLLECTION = "menu"
+ORDERS_COLLECTION = "orders"
+FEEDBACK_COLLECTION = "feedback"
+EOF
+
+═══════════════════════════════════════════════════════════════════
+📸 SCREENSHOT COMMANDS (Linux)
+═══════════════════════════════════════════════════════════════════
+
+# Create screenshots directory
+mkdir -p screenshots
+
+# Take screenshot (GNOME)
+gnome-screenshot -f screenshots/app_screenshot.png
+
+# Take screenshot after delay (5 seconds)
+gnome-screenshot -d 5 -f screenshots/menu_tab.png
+
+# Take screenshot of window
+gnome-screenshot -w -f screenshots/window.png
+
+═══════════════════════════════════════════════════════════════════
+📋 PROJECT MANAGEMENT COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+# Create project archive
+tar -czf Restaurant_Project.tar.gz *.py *.md *.txt requirements.txt
+
+# Extract archive
+tar -xzf Restaurant_Project.tar.gz
+
+# Zip project (alternative)
+zip -r Restaurant_Project.zip *.py *.md *.txt requirements.txt
+
+# Show project structure
+tree -L 2
+
+# Count total lines in project
+find . -name "*.py" -o -name "*.md" | xargs wc -l
+
+═══════════════════════════════════════════════════════════════════
+🔄 GIT COMMANDS (If using Git)
+═══════════════════════════════════════════════════════════════════
+
+# Initialize repository
+git init
+
+# Create .gitignore
+cat > .gitignore << 'EOF'
+config.py
+*.pyc
+__pycache__/
+.env
+screenshots/
+EOF
+
+# Add files
+git add *.py *.md *.txt requirements.txt
+
+# Commit
+git commit -m "Initial commit - Restaurant Food Ordering System"
+
+# Create repository on GitHub and push
+git remote add origin YOUR_REPO_URL
+git branch -M main
+git push -u origin main
+
+═══════════════════════════════════════════════════════════════════
+🧹 CLEANUP COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+# Remove Python cache
+find . -type d -name __pycache__ -exec rm -rf {} +
+find . -type f -name "*.pyc" -delete
+
+# Remove backup files
+rm -f *~
+rm -f *.backup
+
+# Clean up screenshots
+rm -rf screenshots/*.png
+
+═══════════════════════════════════════════════════════════════════
+📝 DOCUMENTATION COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+# View README
+cat README.md | less
+
+# Search in documentation
+grep -i "aggregation" *.md
+
+# Count words in documentation
+wc -w *.md
+
+# Generate file list
+ls -1 *.md *.py > file_list.txt
+
+═══════════════════════════════════════════════════════════════════
+🔧 TROUBLESHOOTING COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+# Check if port is in use
+netstat -an | grep LISTEN
+
+# Kill Python processes
+pkill -9 python
+
+# Check disk space
+df -h
+
+# Check system resources
+top
+htop
+
+# Test network connectivity
+ping google.com
+curl -I https://cloud.mongodb.com
+
+═══════════════════════════════════════════════════════════════════
+📊 MONGODB ATLAS CLI (Optional - If installed)
+═══════════════════════════════════════════════════════════════════
+
+# Login to Atlas
+atlas auth login
+
+# List clusters
+atlas clusters list
+
+# Get cluster details
+atlas clusters describe Cluster0
+
+# Create backup
+atlas backups snapshots create
+
+═══════════════════════════════════════════════════════════════════
+🎯 ASSIGNMENT SUBMISSION COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+# Create submission folder
+mkdir -p Assignment_Submission
+cp *.py *.md *.txt requirements.txt Assignment_Submission/
+cp -r screenshots Assignment_Submission/
+
+# Create final ZIP
+zip -r Restaurant_Assignment_YOUR_NAME.zip Assignment_Submission/
+
+# Check ZIP contents
+unzip -l Restaurant_Assignment_YOUR_NAME.zip
+
+# Calculate submission size
+du -sh Assignment_Submission/
+
+═══════════════════════════════════════════════════════════════════
+🚨 EMERGENCY COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+# If application hangs
+Ctrl + C
+
+# Force quit application
+Ctrl + Z
+kill %1
+
+# If MongoDB connection hangs
+python -c "from pymongo import MongoClient; import config; client = MongoClient(config.MONGO_URI, serverSelectionTimeoutMS=3000)"
+
+# Reset database (DANGER - deletes all data!)
+python -c "from pymongo import MongoClient; import config; client = MongoClient(config.MONGO_URI); client.drop_database(config.DATABASE_NAME); print('Database dropped!')"
+
+═══════════════════════════════════════════════════════════════════
+💡 USEFUL SHORTCUTS
+═══════════════════════════════════════════════════════════════════
+
+Ctrl + C          : Stop running program
+Ctrl + D          : Exit Python shell
+Ctrl + L          : Clear terminal
+Tab               : Auto-complete
+↑ ↓               : Command history
+Ctrl + R          : Search command history
+pwd               : Print working directory
+cd                : Change directory
+
+═══════════════════════════════════════════════════════════════════
+📖 HELP COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+# Python help
+python --help
+python -c "import pymongo; help(pymongo)"
+
+# pip help
+pip --help
+pip show pymongo
+
+# MongoDB help
+mongo --help
+
+# View documentation files
+less README.md
+less SETUP_GUIDE.md
+less MONGODB_QUERIES.md
+
+═══════════════════════════════════════════════════════════════════
+🎬 QUICK START SEQUENCE
+═══════════════════════════════════════════════════════════════════
+
+1. pip install -r requirements.txt
+2. # Update config.py with your MongoDB URI
+3. python load_sample_data.py
+4. python restaurant_app.py
+5. # Click "Connect to MongoDB"
+6. # Start testing!
+
+═══════════════════════════════════════════════════════════════════
+✅ PRE-PRESENTATION CHECKLIST COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+# 1. Check all dependencies
+pip list
+
+# 2. Test connection
+python -c "from database import Database; db = Database(); print(db.connect())"
+
+# 3. Verify sample data
+python -c "from database import Database; db = Database(); db.connect(); success, items = db.get_all_menu_items(); print(f'Menu items: {len(items)}'); success, orders = db.get_all_orders(); print(f'Orders: {len(orders)}'); success, feedback = db.get_all_feedback(); print(f'Feedback: {len(feedback)}')"
+
+# 4. Test application launch
+python restaurant_app.py &
+sleep 5
+pkill python
+
+# 5. Check file completeness
+ls *.py *.md requirements.txt
+
+═══════════════════════════════════════════════════════════════════
+
+END OF QUICK COMMANDS REFERENCE
+
+Last Updated: March 13, 2026
+Project: Restaurant Food Ordering System
+Course: Advanced Database with MongoDB (4040233206)
+
+═══════════════════════════════════════════════════════════════════

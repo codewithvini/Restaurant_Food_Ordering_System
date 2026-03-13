@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/home/yash/Restaurant_Food_Ordering_System/YOUR_WEB_APP_IS_READY.txt:*)",
+      "Bash(git branch:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

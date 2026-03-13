@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Restaurant System{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container text-center py-5">
+        <h1 class="display-3 fw-bold mb-4">
+            <i class="bi bi-shop text-warning"></i><br>
+            Restaurant Food Ordering System
+        </h1>
+        <p class="lead mb-5" style="color: white; font-weight: 500;">Manage your restaurant efficiently with our cloud-based system</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <a href="/dashboard" class="btn btn-primary btn-lg px-4">
+                <i class="bi bi-speedometer2"></i> Go to Dashboard
+            </a>
+            <a href="/menu" class="btn btn-outline-light btn-lg px-4" style="background-color: rgba(255, 255, 255, 0.2); color: white; border-color: white;">
+                <i class="bi bi-card-list"></i> View Menu
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5" style="background-color: #000000;">
+    <div class="row g-4">
+        <!-- Menu Management Card -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm hover-card">
+                <div class="card-body text-center">
+                    <i class="bi bi-card-list display-1 text-primary mb-3"></i>
+                    <h3 class="card-title">Menu Management</h3>
+                    <p class="card-text">Add, update, and manage your restaurant menu items with ease.</p>
+                    <ul class="list-unstyled text-start">
+                        <li><i class="bi bi-check-circle text-success"></i> Add new items</li>
+                        <li><i class="bi bi-check-circle text-success"></i> Update prices</li>
+                        <li><i class="bi bi-check-circle text-success"></i> Search & filter</li>
+                        <li><i class="bi bi-check-circle text-success"></i> Toggle availability</li>
+                    </ul>
+                    <a href="/menu" class="btn btn-primary mt-3">Manage Menu</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Tracking Card -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm hover-card">
+                <div class="card-body text-center">
+                    <i class="bi bi-cart display-1 text-success mb-3"></i>
+                    <h3 class="card-title">Order Tracking</h3>
+                    <p class="card-text">Track customer orders from placement to delivery.</p>
+                    <ul class="list-unstyled text-start">
+                        <li><i class="bi bi-check-circle text-success"></i> Create orders</li>
+                        <li><i class="bi bi-check-circle text-success"></i> Update status</li>
+                        <li><i class="bi bi-check-circle text-success"></i> Search orders</li>
+                        <li><i class="bi bi-check-circle text-success"></i> Payment tracking</li>
+                    </ul>
+                    <a href="/orders" class="btn btn-success mt-3">View Orders</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback System Card -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm hover-card">
+                <div class="card-body text-center">
+                    <i class="bi bi-star display-1 text-warning mb-3"></i>
+                    <h3 class="card-title">Customer Feedback</h3>
+                    <p class="card-text">Collect and analyze customer reviews and ratings.</p>
+                    <ul class="list-unstyled text-start">
+                        <li><i class="bi bi-check-circle text-success"></i> Submit feedback</li>
+                        <li><i class="bi bi-check-circle text-success"></i> View reviews</li>
+                        <li><i class="bi bi-check-circle text-success"></i> Average ratings</li>
+                        <li><i class="bi bi-check-circle text-success"></i> Analytics</li>
+                    </ul>
+                    <a href="/feedback" class="btn btn-warning mt-3">View Feedback</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        color: white;
+        padding: 4rem 0;
+        border-bottom: 1px solid #333;
+    }
+    .hover-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: #0a0a0a !important;
+        border: 1px solid #222 !important;
+    }
+    .hover-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1) !important;
+        border-color: #444 !important;
+    }
+    .card-title, .card-text, h3, h5, p {
+        color: #ffffff !important;
+    }
+    .list-unstyled li {
+        color: #cccccc !important;
+    }
+</style>
+{% endblock %}
