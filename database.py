@@ -21,7 +21,7 @@ class Database:
     def connect(self):
         """Establish connection to MongoDB Atlas"""
         try:
-            self.client = MongoClient(config.MONGO_URI, serverSelectionTimeoutMS=5000)
+            self.client = MongoClient(config.MONGO_URI, serverSelectionTimeoutMS=30000)
             # Test connection
             self.client.admin.command('ping')
 
@@ -31,10 +31,13 @@ class Database:
             self.orders_collection = self.db[config.ORDERS_COLLECTION]
             self.feedback_collection = self.db[config.FEEDBACK_COLLECTION]
 
+            print(f"✅ Successfully connected to database: {config.DATABASE_NAME}")
             return True, "Connected to MongoDB Atlas successfully!"
         except (ConnectionFailure, ServerSelectionTimeoutError) as e:
+            print(f"❌ MongoDB connection failed: {str(e)}")
             return False, f"Failed to connect to MongoDB: {str(e)}"
         except Exception as e:
+            print(f"❌ MongoDB error: {str(e)}")
             return False, f"Error: {str(e)}"
 
     def disconnect(self):
